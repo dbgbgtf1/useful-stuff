@@ -16,7 +16,7 @@ int main()
 
     free(p2); // p2进入unsortedbin
     malloc(0x520); // 将p2放入largebin
-    printf("%s",stderr_adr);
+    printf("%p",*(long*)stderr_adr);
 
     return 0;
 }
