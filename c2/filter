@@ -1,7 +1,0 @@
-#!/bin/bash
-
-data=$(head -c 20 /dev/random)
-
-result=$(echo "$data" | tr -d [:print:] | xxd -p)
-
-echo "$result"
