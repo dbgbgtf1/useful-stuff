@@ -43,6 +43,7 @@ class Filep:
             "__pad5": 0xb8,
             "_mode": 0xc0,
             "_unused2": 0xc4,
+            "vtable": 0xd8,
         }
 
         for name, off in offsets.items():
